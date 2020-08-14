@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.activityViewModels
+import com.example.fragment_exercise.view_model.CounterViewModel
 import kotlinx.android.synthetic.main.fragment_counter.*
 import kotlinx.android.synthetic.main.fragment_counter.view.*
 
@@ -15,11 +17,12 @@ import kotlinx.android.synthetic.main.fragment_counter.view.*
  * create an instance of this fragment.
  */
 class CounterFragment : Fragment(), View.OnClickListener {
-    lateinit var counterHandler: CounterHandler
+
+    // memanggil view model lewat activity
+    val counterViewModel by activityViewModels<CounterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        counterHandler = activity as CounterHandler
     }
 
     override fun onCreateView(
@@ -40,10 +43,10 @@ class CounterFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v) {
             incrementBtn -> {
-               counterHandler.increment()
+               counterViewModel.increment()
             }
             decrementBtn -> {
-               counterHandler.decrement()
+               counterViewModel.decrement()
             }
         }
     }
