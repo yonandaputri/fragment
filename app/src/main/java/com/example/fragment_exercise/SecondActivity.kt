@@ -6,12 +6,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_second.*
 
-class SecondActivity : AppCompatActivity(), View.OnClickListener, CounterHandler {
+class SecondActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var counterFragment: CounterFragment
     lateinit var counterShowFragment: CounterShowFragment
-
-    var counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,21 +23,10 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener, CounterHandler
 
     // karena ada switch fragment, jadi ngga langsung manggil showFragment disini
 
-    override fun increment() {
-        counter++
-    }
-
-    override fun decrement() {
-        counter--
-    }
-
     override fun onClick(v: View?) {
         when(v) {
             toCounterFragmentButton -> {switchFragment(counterFragment)}
-            toCounterShowFragmentButton -> {
-                counterShowFragment.counter = counter
-                switchFragment(counterShowFragment)
-            }
+            toCounterShowFragmentButton -> {switchFragment(counterShowFragment)}
         }
     }
 

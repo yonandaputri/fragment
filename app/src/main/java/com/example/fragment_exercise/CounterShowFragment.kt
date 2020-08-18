@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import com.example.fragment_exercise.view_model.CounterViewModel
 import kotlinx.android.synthetic.main.activity_second.*
 import kotlinx.android.synthetic.main.fragment_counter_show.*
 import kotlinx.android.synthetic.main.fragment_counter_show.view.*
@@ -16,7 +18,9 @@ import org.w3c.dom.Text
  * Use the [CounterShowFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CounterShowFragment(var counter: Int = 0) : Fragment() {
+class CounterShowFragment() : Fragment() {
+
+    val counterViewModel by activityViewModels<CounterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +37,8 @@ class CounterShowFragment(var counter: Int = 0) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showResult(counter.toString())
+        counterTextView.text = counterViewModel.counter.toString()
     }
 
-    fun showResult(result: String) {
-        counterTextView.text = result
-
-    }
 
 }
